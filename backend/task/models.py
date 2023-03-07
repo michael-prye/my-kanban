@@ -5,6 +5,6 @@ from project.models import Project
 class Task(models.Model):
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    date = models.DateField()
+    date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=255)
     project = models.OneToOneField(Project, null=True, blank=True, on_delete=models.PROTECT)
