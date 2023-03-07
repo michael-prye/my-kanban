@@ -1,0 +1,21 @@
+.sidenav{
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1; /* Stay on top */
+    left: 0;
+    background-color: #111; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+}
+
+.sidenav h6{
+    padding: 6px 8px 6px 16px;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav h6:hover{
+    color: #f1f1f1;
+    cursor: pointer;
+}
