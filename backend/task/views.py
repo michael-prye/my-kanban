@@ -1,4 +1,5 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -6,6 +7,7 @@ from .models import Task
 from .serializers import TaskSerializer
 
 @api_view(['GET','POST'])
+@permission_classes([AllowAny])
 def task_list(request):
     if request.method == 'GET':
         task = Task.objects.all()
