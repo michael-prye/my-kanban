@@ -1,6 +1,7 @@
 // General Imports
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 // Pages Imports
 import HomePage from "./pages/HomePage/HomePage";
