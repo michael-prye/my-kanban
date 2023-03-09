@@ -8,14 +8,33 @@
     overflow-x: hidden; /* Disable horizontal scroll */
 }
 
-.sidenav h6{
+.sidenav h5{
     padding: 6px 8px 6px 16px;
     font-size: 20px;
     color: #818181;
     display: block;
 }
 
-.sidenav h6:hover{
+.sidenav h5:hover{
     color: #f1f1f1;
     cursor: pointer;
+}
+.sidenav h4{
+    padding: 6px 8px 6px 16px;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav h4:hover{
+    color: #f1f1f1;
+    cursor: pointer;
+}
+li {
+    display: flex;
+    align-items: center;
+}
+ul{
+    display: flex;
+    flex-direction: column;
 }
