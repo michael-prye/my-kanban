@@ -9,7 +9,6 @@ import ProjectPage from "./pages/ProjectPage/ProjectPage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/Footer/Footer";
 import SideBar from "./components/SideBar/SideBar";
 
 
@@ -22,7 +21,7 @@ function App() {
         <Route path="/" element={<HomePage />}/>
         <Route path="/project" element={<ProjectPage/>}/>
       </Routes>
-      <Footer />
+
     </div>
   );
 }
