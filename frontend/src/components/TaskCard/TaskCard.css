@@ -1,16 +1,17 @@
-.task{
+.task-card{
     border-style: solid;
     max-width: 300px;
-    min-width: 150px;
+    min-width: 300px;
     max-height: 100px;
     margin: 10px;
 
 }
 .task-description{
-
     white-space: nowrap;
+    max-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 10px;
 }
 
 

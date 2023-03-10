@@ -6,8 +6,7 @@ import ReactDatePicker from "react-datepicker";
 import GetDate from "../../utils/GetDate";
 import { forwardRef } from "react";
 import AddTask from "../../components/AddTask/AddTask";
-import BacklogTask from "../../components/BacklogTask/BacklogTask";
-
+import TaskCard from "../../components/TaskCard/TaskCard";
 
 const HomePage = () => {
 
@@ -43,14 +42,14 @@ const HomePage = () => {
       <ul className="backlog">
         <h5>backlog</h5>
         {tasks.filter(task => task.status == 'backlog').map(backlogTask =>(
-          <BacklogTask task={backlogTask}/>
+          <TaskCard task={backlogTask}/>
           
         ))}
       </ul>
       <ul className="doing">
       <h5>doing</h5>
       {tasks.filter(task => task.status == 'doing').map(doingTask =>(
-          <li>{doingTask.name}</li>
+          <TaskCard task={doingTask}/>
         ))}
         
       </ul>
