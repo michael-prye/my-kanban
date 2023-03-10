@@ -31,7 +31,7 @@ const TaskCard = (props) => {
                         <Check2 className="doing-check" onClick={()=>updateStatus('doing', props.task.id)}/> 
                     }
                     {props.task.status == 'doing' &&
-                        <Check2All/> 
+                        <Check2All onClick={()=>updateStatus('done', props.task.id)}/> 
                     }
                 </Col>
             </Row>

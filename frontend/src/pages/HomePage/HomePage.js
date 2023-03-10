@@ -49,14 +49,14 @@ const HomePage = () => {
       <ul className="doing">
       <h5>doing</h5>
       {tasks.filter(task => task.status == 'doing').map(doingTask =>(
-          <TaskCard task={doingTask}/>
+          <TaskCard task={doingTask} getTasks={getTasks}/>
         ))}
         
       </ul>
       <ul className="done">
       <h5>done</h5>
       {tasks.filter(task => task.status == 'done').map(doneTask =>(
-          <li>{doneTask.name}</li>
+          <TaskCard task={doneTask}/>
         ))}
       </ul>
       </ul>
