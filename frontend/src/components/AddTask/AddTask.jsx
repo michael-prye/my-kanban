@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import  Modal from "react-bootstrap/Modal";
 import GetDate from "../../utils/GetDate";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import useFetch from "../../hooks/useFetch";
 import "./AddTask.css"
 

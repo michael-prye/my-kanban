@@ -10,7 +10,7 @@ const Navbar = () => {
       <ul>
         <li>
         
-            <b className="brand" onClick={()=> navigate("/")}>React/Django JWT</b>
+            <b className="brand" onClick={()=> navigate("/")}>MyKanBan</b>
         </li>
       </ul>
     </div>
