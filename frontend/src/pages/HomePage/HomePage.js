@@ -42,7 +42,7 @@ const HomePage = () => {
       <ul className="backlog">
         <h5>backlog</h5>
         {tasks.filter(task => task.status == 'backlog').map(backlogTask =>(
-          <TaskCard task={backlogTask}/>
+          <TaskCard task={backlogTask} getTasks={getTasks}/>
           
         ))}
       </ul>

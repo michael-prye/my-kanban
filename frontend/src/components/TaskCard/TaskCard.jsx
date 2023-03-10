@@ -4,22 +4,33 @@ import { Check2, Check2All } from "react-bootstrap-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import useFetch from "../../hooks/useFetch";
+import { useState } from "react";
 
 
-const TaskCard = ({task}) => {
+const TaskCard = (props) => {
+
+    const [data, putTaskStatus] = useFetch('http://127.0.0.1:8000/api/task/', 'PUT', null)
+
+
+    const updateStatus = async(status, id)=>{
+        await putTaskStatus(id, status);
+        await props.getTasks();
+
+    }
 
 
 
     return ( 
         <Container className="task-card">
-            <Row> <h6>{task.name}</h6></Row>
+            <Row> <h6>{props.task.name}</h6></Row>
             <Row>
-                <Col><p className="task-description">{task.description}</p></Col>
+                <Col><p className="task-description">{props.task.description}</p></Col>
                 <Col>
-                    {task.status == 'backlog' &&
-                        <Check2/> 
+                    {props.task.status == 'backlog' &&
+                        <Check2 className="doing-check" onClick={()=>updateStatus('doing', props.task.id)}/> 
                     }
-                    {task.status == 'doing' &&
+                    {props.task.status == 'doing' &&
                         <Check2All/> 
                     }
                 </Col>

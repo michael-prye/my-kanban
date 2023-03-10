@@ -13,5 +13,7 @@
     text-overflow: ellipsis;
     font-size: 10px;
 }
-
+.doing-check :hover{
+    color: green;
+}
 

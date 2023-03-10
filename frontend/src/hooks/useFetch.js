@@ -6,7 +6,7 @@ const useFetch = (url,method,formData) => {
     const [data, setData] = useState([])
 
 
-    const fetchRequest = async (id)=>{
+    const fetchRequest = async (id, status)=>{
         let finalUrl = ""
         if (id){
             finalUrl = url.concat("?id=",id)
@@ -14,6 +14,7 @@ const useFetch = (url,method,formData) => {
             finalUrl = url
         }
         console.log(finalUrl)
+
         if(method=="DELETE"){ // if else statement to handle if request returns a body of json text
             const response = await fetch(finalUrl,{
                 method: method,
@@ -24,6 +25,19 @@ const useFetch = (url,method,formData) => {
                 .then((data)=>setData((data))
                  )
        
+        }else if(status){
+            let finalData = {status:status}
+            console.log(finalData)
+            const response = await fetch(finalUrl,{
+                method: method,
+                headers:{'Content-Type': 'application/json'},
+                body: finalData? JSON.stringify(finalData) :null,
+            
+                })
+                .then((response)=>  response.json())
+                .then((data)=>setData((data))
+                 )
+
         }else{
             const response = await fetch(finalUrl,{
                 method: method,
