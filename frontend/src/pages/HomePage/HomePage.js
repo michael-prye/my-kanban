@@ -4,7 +4,8 @@ import useFetch from "../../hooks/useFetch";
 import "./HomePage.css"
 import ReactDatePicker from "react-datepicker";
 import GetDate from "../../utils/GetDate";
-
+import { forwardRef } from "react";
+import AddTask from "../../components/AddTask/AddTask";
 
 
 const HomePage = () => {
@@ -13,6 +14,9 @@ const HomePage = () => {
   const [tasks, getTasks] = useFetch('http://127.0.0.1:8000/api/task/','GET',null)
   const [startDate, setStartDate] = useState(new Date())
   const [filterDate, setFilterDate] = useState(getDate)
+  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button className="example-custom-input" onClick={onClick} ref={ref}>{value}</button>));
+
 
  const handleDatePick = (date)=>{
   setStartDate(date);
@@ -30,8 +34,9 @@ const HomePage = () => {
 
 
   return (
-    <div className="container">
-      <ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd"/>
+    <div className="home-container">
+      <ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>}/>
+      <AddTask getTasks={getTasks}/>
 
       <ul className="task-group">
       <ul className="backlog">

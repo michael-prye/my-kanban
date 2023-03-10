@@ -3,3 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
 }
+.home-container{
+    overflow: auto;
+    padding-left: 160px;
+}

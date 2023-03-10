@@ -12,9 +12,6 @@ const Navbar = () => {
         
             <b className="brand" onClick={()=> navigate("/")}>React/Django JWT</b>
         </li>
-        <li>
-  
-        </li>
       </ul>
     </div>
     

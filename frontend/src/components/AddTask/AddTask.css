@@ -1,0 +1,7 @@
+.task-form{
+    display: flex;
+    flex-direction: column;
+}
+.task-input{
+    margin: 5px;
+}
