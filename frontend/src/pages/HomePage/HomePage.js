@@ -32,7 +32,7 @@ const HomePage = () => {
   return (
     <div className="container">
       <ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd"/>
-      <button onClick={()=>{console.log(filterDate)}}>GET DATE</button>
+
       <ul className="task-group">
       <ul className="backlog">
         <h5>backlog</h5>
