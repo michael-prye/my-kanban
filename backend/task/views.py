@@ -12,6 +12,11 @@ from .serializers import TaskSerializer
 @permission_classes([AllowAny])
 def task_list(request):
     if request.method == 'GET':
+        date = request.query_params.get('date')
+        if date:
+            task = get_object_or_404(Task, date=date)
+            serializer = TaskSerializer(task,many = True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
         task = Task.objects.all()
         serializer = TaskSerializer(task, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -23,7 +28,7 @@ def task_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     elif request.method == "PUT":
         task_id = request.query_params.get('id')
-        queryset = get_object_or_404(Task, id=task_id)
+        queryset = get_object_or_404(Task,id=task_id)
         serializer = TaskSerializer(queryset, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save()
