@@ -6,11 +6,14 @@ const useFetch = (url,method,formData) => {
     const [data, setData] = useState([])
 
 
-    const fetchRequest = async (id, status)=>{
+    const fetchRequest = async (id, status,filterDate)=>{
         let finalUrl = ""
         if (id){
             finalUrl = url.concat("?id=",id)
-        }else{
+        }else if (filterDate){
+            finalUrl = url.concat("?date=",filterDate)
+        }
+        else{
             finalUrl = url
         }
         console.log(finalUrl)

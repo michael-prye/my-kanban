@@ -11,10 +11,10 @@ import { Col, Row } from "react-bootstrap";
 
 const HomePage = () => {
 
-  let getDate = GetDate();
+  let date = GetDate();
   const [tasks, getTasks] = useFetch('http://127.0.0.1:8000/api/task/','GET',null)
   const [startDate, setStartDate] = useState(new Date())
-  const [filterDate, setFilterDate] = useState(getDate)
+  const [filterDate, setFilterDate] = useState(date)
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button className="example-custom-input" onClick={onClick} ref={ref}>{value}</button>));
 
@@ -28,8 +28,8 @@ const HomePage = () => {
 
 
   useEffect(() => {
-    getTasks();
-  }, []);
+    getTasks(null, null ,filterDate);
+  }, [filterDate]);
 
 
 
@@ -46,7 +46,7 @@ const HomePage = () => {
           <h6>Backlog</h6>
           <div className="task-list">
             {tasks.filter(task => task.status == 'backlog').map(backlogTask =>(
-            <TaskCard task={backlogTask} getTasks={getTasks}/>
+            <TaskCard  task={backlogTask} getTasks={getTasks}/>
             ))}
           </div>
         </div>
