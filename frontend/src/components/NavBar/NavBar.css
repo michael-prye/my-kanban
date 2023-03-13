@@ -3,7 +3,10 @@
   background: rgb(1, 16, 29);
   box-shadow: 4px 2px 5px gray;
   color: white;
-  padding: 1.5rem 2rem;
+  position: fixed;
+  width: 100%;
+  height: 100px;
+  z-index: 1;
 }
 
 .navBar button {

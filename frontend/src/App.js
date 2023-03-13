@@ -10,14 +10,14 @@ import ProjectPage from "./pages/ProjectPage/ProjectPage";
 
 
 // Component Imports
-import Navbar from "./components/NavBar/NavBar";
+import NavBar from "./components/NavBar/NavBar";
 import SideBar from "./components/SideBar/SideBar";
 
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <NavBar />
       <SideBar/>
       <Routes>
         <Route path="/" element={<HomePage />}/>

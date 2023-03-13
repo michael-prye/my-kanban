@@ -2,8 +2,8 @@
     border-style: solid;
     max-width: 300px;
     min-width: 300px;
-    max-height: 100px;
     margin: 10px;
+    min-height: 75px;
 
 }
 .task-description{

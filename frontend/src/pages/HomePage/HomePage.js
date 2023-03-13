@@ -7,6 +7,7 @@ import GetDate from "../../utils/GetDate";
 import { forwardRef } from "react";
 import AddTask from "../../components/AddTask/AddTask";
 import TaskCard from "../../components/TaskCard/TaskCard";
+import { Col, Row } from "react-bootstrap";
 
 const HomePage = () => {
 
@@ -35,31 +36,38 @@ const HomePage = () => {
 
   return (
     <div className="home-container">
-      <ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>}/>
-      <AddTask getTasks={getTasks}/>
+      <div className="page-head">
+        <li><ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>}/></li>
+        <li><AddTask getTasks={getTasks}/></li>
+      </div>
 
-      <ul className="task-group">
-      <ul className="backlog">
-        <h5>backlog</h5>
-        {tasks.filter(task => task.status == 'backlog').map(backlogTask =>(
-          <TaskCard task={backlogTask} getTasks={getTasks}/>
-          
+      <div className="task-container">
+        <div className="backlog">
+          <h6>Backlog</h6>
+          <div className="task-list">
+            {tasks.filter(task => task.status == 'backlog').map(backlogTask =>(
+            <TaskCard task={backlogTask} getTasks={getTasks}/>
+            ))}
+          </div>
+        </div>
+      < div className="doing">
+        <h6>Doing</h6>
+        <div className="task-list">
+        {tasks.filter(task => task.status == 'doing').map(doingTask =>(
+        <TaskCard task={doingTask} getTasks={getTasks}/>
         ))}
-      </ul>
-      <ul className="doing">
-      <h5>doing</h5>
-      {tasks.filter(task => task.status == 'doing').map(doingTask =>(
-          <TaskCard task={doingTask} getTasks={getTasks}/>
-        ))}
-        
-      </ul>
-      <ul className="done">
-      <h5>done</h5>
-      {tasks.filter(task => task.status == 'done').map(doneTask =>(
+        </div>
+        </div>
+        <div className="done">
+          <h6>Done</h6>
+          <div className="task-list">
+          {tasks.filter(task => task.status == 'done').map(doneTask =>(
           <TaskCard task={doneTask}/>
-        ))}
-      </ul>
-      </ul>
+          ))}
+          </div>
+        </div>
+      </div>
+
       
     </div>
   );

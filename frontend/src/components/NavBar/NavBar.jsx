@@ -1,22 +1,27 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./NavBar.css";
+import Navbar from 'react-bootstrap/Navbar';
 
-const Navbar = () => {
+
+const NavBar = () => {
 
   const navigate = useNavigate();
+
+
+
+
   return (
     <div className="navBar">
-      <ul>
-        <li>
+      
+       
         
-            <b className="brand" onClick={()=> navigate("/")}>MyKanBan</b>
-        </li>
-      </ul>
+      <b className="brand" onClick={()=> navigate("/")}>MyKanBan</b>
+       
     </div>
     
     
   );
 };
 
-export default Navbar;
+export default NavBar;

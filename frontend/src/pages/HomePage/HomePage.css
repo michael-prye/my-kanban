@@ -1,9 +1,17 @@
-.task-group{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-}
 .home-container{
     overflow: auto;
     padding-left: 160px;
+    padding-top: 100px;
+}
+.task-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.task-list{
+    min-height: 700px;
+    max-height: 700px;
+    overflow-y: scroll;
+    border-style: solid;
+    min-width: 350px;
 }
