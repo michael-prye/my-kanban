@@ -14,7 +14,7 @@ def task_list(request):
     if request.method == 'GET':
         date = request.query_params.get('date')
         if date:
-            task = get_object_or_404(Task, date=date)
+            task = Task.objects.filter(date=date)
             serializer = TaskSerializer(task,many = True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         task = Task.objects.all()
