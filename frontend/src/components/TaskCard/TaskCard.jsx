@@ -16,7 +16,7 @@ const TaskCard = (props) => {
 
     const updateStatus = async(status, id)=>{
         await putTaskStatus(id, status);
-        await props.getTasks();
+        await props.getTasks(null, null,props.date);
 
     }
 

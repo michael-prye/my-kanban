@@ -38,7 +38,7 @@ const HomePage = () => {
     <div className="home-container">
       <div className="page-head">
         <li><ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>}/></li>
-        <li><AddTask getTasks={getTasks}/></li>
+        <li><AddTask getTasks={getTasks} date={filterDate}/></li>
       </div>
 
       <div className="task-container">
@@ -46,7 +46,7 @@ const HomePage = () => {
           <h6>Backlog</h6>
           <div className="task-list">
             {tasks.filter(task => task.status == 'backlog').map(backlogTask =>(
-            <TaskCard  task={backlogTask} getTasks={getTasks}/>
+            <TaskCard  task={backlogTask} getTasks={getTasks} date={filterDate}/>
             ))}
           </div>
         </div>
@@ -54,7 +54,7 @@ const HomePage = () => {
         <h6>Doing</h6>
         <div className="task-list">
         {tasks.filter(task => task.status == 'doing').map(doingTask =>(
-        <TaskCard task={doingTask} getTasks={getTasks}/>
+        <TaskCard task={doingTask} getTasks={getTasks} date={filterDate}/>
         ))}
         </div>
         </div>

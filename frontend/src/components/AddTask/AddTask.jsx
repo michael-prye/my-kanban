@@ -27,7 +27,7 @@ const AddTask = (props) => {
     }
     const handleTaskPost = async()=>{
         await sendTask();
-        await props.getTasks();
+        await props.getTasks(null, null, props.date);
         setTaskForm(defaultTaskForm);
         showTaskModal(false);
     }
