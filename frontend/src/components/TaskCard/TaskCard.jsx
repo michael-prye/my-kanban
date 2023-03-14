@@ -9,15 +9,26 @@ import { useState } from "react";
 
 
 const TaskCard = (props) => {
-
-    const [data, putTaskStatus] = useFetch('http://127.0.0.1:8000/api/task/', 'PUT', null)
     const [taskModal, showTaskModal] = useState(false)
     const [taskForm, setTaskForm] = useState(props.task)
+
+    const [statusData, putTaskStatus] = useFetch('http://127.0.0.1:8000/api/task/', 'PUT', null)
+    const [taskData, putTask] = useFetch('http://127.0.0.1:8000/api/task/', 'PUT', taskForm)
+
 
     const updateStatus = async(status, id)=>{
         await putTaskStatus(id, status);
         await props.getTasks(null, null,props.date);
+    }
 
+    const handleInputChange =(e)=>{
+        e.persist();
+        setTaskForm({...taskForm, [e.target.name]: e.target.value})
+    }
+    const updateTask = async(id)=>{
+        await putTask(id);
+        await props.getTasks(null, null,props.date);
+        showTaskModal(false)
     }
 
 
@@ -48,16 +59,19 @@ const TaskCard = (props) => {
                     <input className="task-input"
                     type='text'
                     name='name'
-                    value={taskForm.name}/>
+                    value={taskForm.name}
+                    onChange={handleInputChange}/>
                     <textarea className="task-input"
                     name="description"
                     value={taskForm.description}
                     rows='4'
-                    cols='30'/>
+                    cols='30'
+                    onChange={handleInputChange}/>
                 </form>
             </Modal.Body>
             <Modal.Footer>
                 <button onClick={()=>showTaskModal(false)}>Exit</button>
+                <button onClick={()=>updateTask(props.task.id)}>Update</button>
             </Modal.Footer>
             
         </Modal>
