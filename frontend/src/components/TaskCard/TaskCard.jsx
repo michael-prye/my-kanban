@@ -1,6 +1,6 @@
 import "./TaskCard.css"
 import { Modal } from "react-bootstrap";
-import { Check2, Check2All } from "react-bootstrap-icons";
+import { Check2, Check2All, ThreeDotsVertical} from "react-bootstrap-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -24,18 +24,19 @@ const TaskCard = (props) => {
 
     return (
         <div>
-        <Container className="task-card" onClick={()=>showTaskModal(true)}>
+        <Container className="task-card" >
             <Row> <h6>{props.task.name}</h6></Row>
             <Row>
                 <Col><p className="task-description">{props.task.description}</p></Col>
                 <Col>
                     {props.task.status == 'backlog' &&
-                        <Check2 className="doing-check" onClick={()=>updateStatus('doing', props.task.id)}/> 
+                        <Check2 size='25' className="doing-check" onClick={()=>updateStatus('doing', props.task.id)}/> 
                     }
                     {props.task.status == 'doing' &&
                         <Check2All onClick={()=>updateStatus('done', props.task.id)}/> 
                     }
                 </Col>
+                <Col><ThreeDotsVertical onClick={()=>showTaskModal(true)}/></Col>
             </Row>
         </Container>
         <Modal show={taskModal} onHide={()=>showTaskModal(false)} centered={true}>

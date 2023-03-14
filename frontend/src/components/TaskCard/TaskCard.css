@@ -16,4 +16,6 @@
 .doing-check :hover{
     color: green;
 }
-
+.doing-check{
+    size: 50px;
+}
