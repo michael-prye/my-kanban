@@ -7,12 +7,13 @@ import GetDate from "../../utils/GetDate";
 import { forwardRef } from "react";
 import AddTask from "../../components/AddTask/AddTask";
 import TaskCard from "../../components/TaskCard/TaskCard";
-import { Col, Row } from "react-bootstrap";
+
 
 const HomePage = () => {
 
   let date = GetDate();
   const [tasks, getTasks] = useFetch('http://127.0.0.1:8000/api/task/','GET',null)
+  const [data, updateOldTask] = useFetch('http://127.0.0.1:8000/api/task/date','GET',null)
   const [startDate, setStartDate] = useState(new Date())
   const [filterDate, setFilterDate] = useState(date)
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -31,14 +32,20 @@ const HomePage = () => {
     getTasks(null, null ,filterDate);
   }, [filterDate]);
 
+  const handleUpdate = async()=>{
+    await updateOldTask(null,null,filterDate);
+    await getTasks(null, null ,filterDate);
+  }
+
 
 
 
   return (
     <div className="home-container">
       <div className="page-head">
-        <li><ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>}/></li>
-        <li><AddTask getTasks={getTasks} date={filterDate}/></li>
+        <ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>}/>
+        <AddTask getTasks={getTasks} date={filterDate}/>
+        <button onClick={handleUpdate}>Pull tasks</button>
       </div>
 
       <div className="task-container">
