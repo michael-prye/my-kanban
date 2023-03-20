@@ -34,5 +34,13 @@ def task_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.error_messages, status=status.HTTP_400_BAD_REQUEST)
+    
+@api_view(['PUT'])
+@permission_classes([AllowAny])
+def task_date_update(request):
+    request_date = request.query_params.get('date')
+    Task.objects.filter(status__in = ['backlog', 'doing']).filter(date__lt=request_date).update(date=request_date)
+    return Response(status=status.HTTP_200_OK)
+    
 
 
