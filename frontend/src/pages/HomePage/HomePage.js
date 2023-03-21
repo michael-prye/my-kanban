@@ -16,7 +16,7 @@ const HomePage = () => {
   //const [tasks, getTasks] = useFetch('http://127.0.0.1:8000/api/task/','GET',null)
   const [tasks, getTasks] = useAxios('http://127.0.0.1:8000/api/task/','GET',null)
   
-  const [data, updateOldTask] = useFetch('http://127.0.0.1:8000/api/task/date','GET',null)
+  const [updateOldTaskData, updateOldTask] = useAxios('http://127.0.0.1:8000/api/task/date','GET',null)
   const [startDate, setStartDate] = useState(new Date())
   const [filterDate, setFilterDate] = useState(date)
 

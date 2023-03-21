@@ -26,7 +26,7 @@ const useAxios = (url,method,requestData) => {
         setData(response.data)
 
     }
-    return [data, axiosRequest]
+    return [data, axiosRequest];
 
 
 

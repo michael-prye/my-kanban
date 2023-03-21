@@ -1,13 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import "./SideBar.css"
 import { useEffect, useState } from "react";
-import useFetch from "../../hooks/useFetch";
 import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
 import useAxios from "../../hooks/useAxios";
+
 const SideBar = () => {
 
 const navigate = useNavigate();
-//const [projects, getProjects] = useFetch('http://127.0.0.1:8000/api/project/','GET', null)
 const [projects, getProjects] = useAxios('http://127.0.0.1:8000/api/project/','GET', null)
 const [projectDropdown, setProjectDropdown] = useState(false)
 

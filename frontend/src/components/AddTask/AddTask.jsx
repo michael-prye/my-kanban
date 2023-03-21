@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import  Modal from "react-bootstrap/Modal";
 import GetDate from "../../utils/GetDate";
 import useFetch from "../../hooks/useFetch";
+import useAxios from "../../hooks/useAxios"
 import "./AddTask.css"
+
 
 
 
@@ -15,7 +17,7 @@ const AddTask = (props) => {
     const [taskForm, setTaskForm] = useState(defaultTaskForm);
     const [taskModal, showTaskModal] = useState(false)
 
-    const [task, sendTask] = useFetch('http://127.0.0.1:8000/api/task/','POST',taskForm);
+    const [task, sendTask] = useAxios('http://127.0.0.1:8000/api/task/','POST',taskForm);
 
 
     const handleClose =()=>{
