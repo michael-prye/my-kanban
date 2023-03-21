@@ -33,12 +33,12 @@ const HomePage = () => {
 
 
   useEffect(() => {
-    getTasks(null, null ,filterDate);
+    getTasks(null,filterDate);
   }, [filterDate]);
 
   const handleUpdate = async()=>{
-    await updateOldTask(null,null,filterDate);
-    await getTasks(null, null ,filterDate);
+    await updateOldTask(null,filterDate);
+    await getTasks(null, filterDate);
   }
 
 

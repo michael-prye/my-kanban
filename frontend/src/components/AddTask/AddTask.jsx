@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import  Modal from "react-bootstrap/Modal";
 import GetDate from "../../utils/GetDate";
-import useFetch from "../../hooks/useFetch";
 import useAxios from "../../hooks/useAxios"
 import "./AddTask.css"
 
@@ -29,7 +28,7 @@ const AddTask = (props) => {
     }
     const handleTaskPost = async()=>{
         await sendTask();
-        await props.getTasks(null, null, props.date);
+        await props.getTasks(null, props.date);
         setTaskForm(defaultTaskForm);
         showTaskModal(false);
     }

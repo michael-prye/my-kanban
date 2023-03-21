@@ -6,19 +6,21 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import useFetch from "../../hooks/useFetch";
 import { useState } from "react";
+import useAxios from "../../hooks/useAxios"
 
 
 const TaskCard = (props) => {
     const [taskModal, showTaskModal] = useState(false)
     const [taskForm, setTaskForm] = useState(props.task)
 
-    const [statusData, putTaskStatus] = useFetch('http://127.0.0.1:8000/api/task/', 'PUT', null)
+
+    const [statusData, putTaskStatus] = useAxios('http://127.0.0.1:8000/api/task/', 'PUT', null)
     const [taskData, putTask] = useFetch('http://127.0.0.1:8000/api/task/', 'PUT', taskForm)
 
 
     const updateStatus = async(status, id)=>{
-        await putTaskStatus(id, status);
-        await props.getTasks(null, null,props.date);
+        await putTaskStatus(id, null, status);
+        await props.getTasks(null,props.date);
     }
 
     const handleInputChange =(e)=>{
