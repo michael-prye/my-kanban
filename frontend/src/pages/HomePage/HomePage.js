@@ -57,7 +57,7 @@ const HomePage = () => {
           <h6>Backlog</h6>
           <div className="task-list">
             {tasks.filter(task => task.status == 'backlog').map(backlogTask =>(
-            <TaskCard  task={backlogTask} getTasks={getTasks} date={filterDate}/>
+            <TaskCard  task={backlogTask} getTasks={getTasks} date={filterDate} key={backlogTask.id}/>
             ))}
           </div>
         </div>
@@ -65,7 +65,7 @@ const HomePage = () => {
         <h6>Doing</h6>
         <div className="task-list">
         {tasks.filter(task => task.status == 'doing').map(doingTask =>(
-        <TaskCard task={doingTask} getTasks={getTasks} date={filterDate}/>
+        < TaskCard task={doingTask} getTasks={getTasks} date={filterDate} key={doingTask.id}/>
         ))}
         </div>
         </div>
@@ -73,7 +73,7 @@ const HomePage = () => {
           <h6>Done</h6>
           <div className="task-list">
           {tasks.filter(task => task.status == 'done').map(doneTask =>(
-          <TaskCard task={doneTask}/>
+          <TaskCard task={doneTask} key={doneTask.id}/>
           ))}
           </div>
         </div>
