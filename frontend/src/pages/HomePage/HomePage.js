@@ -7,15 +7,19 @@ import GetDate from "../../utils/GetDate";
 import { forwardRef } from "react";
 import AddTask from "../../components/AddTask/AddTask";
 import TaskCard from "../../components/TaskCard/TaskCard";
+import useAxios from "../../hooks/useAxios";
 
 
 const HomePage = () => {
 
   let date = GetDate();
-  const [tasks, getTasks] = useFetch('http://127.0.0.1:8000/api/task/','GET',null)
+  //const [tasks, getTasks] = useFetch('http://127.0.0.1:8000/api/task/','GET',null)
+  const [tasks, getTasks] = useAxios('http://127.0.0.1:8000/api/task/','GET',null)
+  
   const [data, updateOldTask] = useFetch('http://127.0.0.1:8000/api/task/date','GET',null)
   const [startDate, setStartDate] = useState(new Date())
   const [filterDate, setFilterDate] = useState(date)
+
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <button className="example-custom-input" onClick={onClick} ref={ref}>{value}</button>));
 
