@@ -35,7 +35,7 @@ def task_list(request):
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.error_messages, status=status.HTTP_400_BAD_REQUEST)
     
-@api_view(['PUT'])
+@api_view(['GET'])
 @permission_classes([AllowAny])
 def task_date_update(request):
     request_date = request.query_params.get('date')
