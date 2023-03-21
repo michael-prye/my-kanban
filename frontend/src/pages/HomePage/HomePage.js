@@ -47,7 +47,7 @@ const HomePage = () => {
   return (
     <div className="home-container">
       <div className="page-head">
-        <ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>}/>
+        <ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>} wrapperClassName='date-picker'/>
         <AddTask getTasks={getTasks} date={filterDate}/>
         <button onClick={handleUpdate}>Pull tasks</button>
       </div>
