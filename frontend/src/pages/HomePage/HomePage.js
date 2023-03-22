@@ -48,12 +48,14 @@ const HomePage = () => {
       <div className="page-head">
         <ReactDatePicker selected={startDate} onChange={handleDatePick} dateFormat="yyyy-MM-dd" customInput={<ExampleCustomInput/>} wrapperClassName='date-picker'/>
         <AddTask getTasks={getTasks} date={filterDate}/>
-        <button onClick={handleUpdate}>Pull tasks</button>
+        <button onClick={handleUpdate}>Pull tasks</button>       
       </div>
+      <label>completed tasks: {tasks.filter(task => task.status === 'done').length}/{tasks.length} </label>
+        <meter value={tasks.filter(task => task.status === 'done').length} min='0' max={tasks.length}/>
 
       <div className="task-container">
         <div className="backlog">
-          <h6>Backlog</h6>
+          <h6>Backlog: {tasks.filter(task => task.status === 'backlog').length}</h6>
           <div className="task-list">
             {tasks.filter(task => task.status === 'backlog').map(backlogTask =>(
             <TaskCard  task={backlogTask} getTasks={getTasks} date={filterDate} key={backlogTask.id}/>
@@ -61,7 +63,7 @@ const HomePage = () => {
           </div>
         </div>
       < div className="doing">
-        <h6>Doing</h6>
+        <h6>Doing: {tasks.filter(task => task.status === 'doing').length}</h6>
         <div className="task-list">
         {tasks.filter(task => task.status === 'doing').map(doingTask =>(
         < TaskCard task={doingTask} getTasks={getTasks} date={filterDate} key={doingTask.id}/>
@@ -69,7 +71,7 @@ const HomePage = () => {
         </div>
         </div>
         <div className="done">
-          <h6>Done</h6>
+          <h6>Done: {tasks.filter(task => task.status === 'done').length}</h6>
           <div className="task-list">
           {tasks.filter(task => task.status === 'done').map(doneTask =>(
           <TaskCard task={doneTask} getTasks={getTasks} date={filterDate} key={doneTask.id}/>
