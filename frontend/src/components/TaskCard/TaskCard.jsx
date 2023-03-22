@@ -51,7 +51,7 @@ const TaskCard = (props) => {
     return (
         <div>
         <Container className="task-card" >
-            <Row> <h6>{props.task.name}</h6></Row>
+            <Row> <h6 className="task-name">{props.task.name}</h6></Row>
             <Row>
                 <Col><p className="task-description">{props.task.description}</p></Col>
                 <Col>
