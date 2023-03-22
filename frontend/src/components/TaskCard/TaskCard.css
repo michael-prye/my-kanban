@@ -9,13 +9,19 @@
 .task-description{
     white-space: nowrap;
     max-width: 150px;
+    min-width: 150px;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 10px;
 }
-.doing-check :hover{
+
+
+.task-check :hover{
     color: green;
+    cursor: pointer;
 }
-.doing-check{
-    size: 50px;
+.done-circle  :hover{
+    
+    cursor: pointer;
+    fill: red;
 }

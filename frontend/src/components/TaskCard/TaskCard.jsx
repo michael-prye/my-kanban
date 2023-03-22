@@ -1,6 +1,6 @@
 import "./TaskCard.css"
 import { Modal } from "react-bootstrap";
-import { Check2, Check2All, ThreeDotsVertical} from "react-bootstrap-icons";
+import { Check2, Check2All, ThreeDotsVertical, XCircle} from "react-bootstrap-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -15,7 +15,7 @@ const TaskCard = (props) => {
 
 
     const [statusData, putTaskStatus] = useAxios('http://127.0.0.1:8000/api/task/', 'PUT', null)
-    const [taskData, putTask] = useFetch('http://127.0.0.1:8000/api/task/', 'PUT', taskForm)
+    const [taskData, putTask] = useAxios('http://127.0.0.1:8000/api/task/', 'PUT', taskForm)
 
 
     const updateStatus = async(status, id)=>{
@@ -28,7 +28,7 @@ const TaskCard = (props) => {
         setTaskForm({...taskForm, [e.target.name]: e.target.value})
     }
     const updateTask = async(id)=>{
-        await putTask(id);
+        await putTask(id,null,null);
         await props.getTasks(null, null,props.date);
         showTaskModal(false)
     }
@@ -43,10 +43,14 @@ const TaskCard = (props) => {
                 <Col><p className="task-description">{props.task.description}</p></Col>
                 <Col>
                     {props.task.status == 'backlog' &&
-                        <Check2 size='25' className="doing-check" onClick={()=>updateStatus('doing', props.task.id)}/> 
+
+                        <Check2 size={20} className="task-check" onClick={()=>updateStatus('doing', props.task.id)}/> 
                     }
                     {props.task.status == 'doing' &&
-                        <Check2All onClick={()=>updateStatus('done', props.task.id)}/> 
+                        <Check2All size={20} onClick={()=>updateStatus('done', props.task.id)} className="task-check"/> 
+                    }
+                    {props.task.status == 'done' &&
+                        <XCircle className="done-circle" size={20}/>
                     }
                 </Col>
                 <Col><ThreeDotsVertical onClick={()=>showTaskModal(true)}/></Col>
