@@ -12,10 +12,12 @@ import useAxios from "../../hooks/useAxios"
 const TaskCard = (props) => {
     const [taskModal, showTaskModal] = useState(false)
     const [taskForm, setTaskForm] = useState(props.task)
+    const [deleteModal, showDeleteModal] = useState(false)
 
 
     const [statusData, putTaskStatus] = useAxios('http://127.0.0.1:8000/api/task/', 'PUT', null)
     const [taskData, putTask] = useAxios('http://127.0.0.1:8000/api/task/', 'PUT', taskForm)
+    const [deleteTaskData, deleteTask] = useAxios('http://127.0.0.1:8000/api/task/','DELETE',null)
 
 
     const updateStatus = async(status, id)=>{
@@ -31,6 +33,17 @@ const TaskCard = (props) => {
         await putTask(id,null,null);
         await props.getTasks(null, null,props.date);
         showTaskModal(false)
+    }
+    const handleDeleteModal =()=>{
+        showTaskModal(false)
+        showDeleteModal(true)
+    }
+    const handleDelete = async(id)=>{
+        await deleteTask(id,null,null);
+        await props.getTasks(null, null,props.date); 
+        showDeleteModal(false)
+
+
     }
 
 
@@ -73,10 +86,20 @@ const TaskCard = (props) => {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <button >Delete</button>
+                <button onClick={handleDeleteModal}>Delete</button>
                 <button onClick={()=>updateTask(props.task.id)}>Update</button>
             </Modal.Footer>
             
+        </Modal>
+        <Modal show={deleteModal} onHide={()=>showDeleteModal(false)} centered={true}>
+            <Modal.Header closeButton>
+                <Modal.Title>Do you want to delete Task?</Modal.Title>
+            </Modal.Header>
+            <Modal.Footer>
+                <button onClick={()=>handleDelete(props.task.id)}>Yes</button>
+                <button onClick={()=>showDeleteModal(false)}>No</button>
+            </Modal.Footer>
+
         </Modal>
         </div>
      );
