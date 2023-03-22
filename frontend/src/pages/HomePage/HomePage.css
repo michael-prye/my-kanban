@@ -1,7 +1,7 @@
 .home-container{
     overflow: auto;
     padding-left: 160px;
-    padding-top: 100px;
+    padding-top: 60px;
 }
 .task-container{
     display: flex;
@@ -17,8 +17,11 @@
 }
 .date-picker{
     width: auto;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 .page-head{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    padding-bottom: 10px;
 }

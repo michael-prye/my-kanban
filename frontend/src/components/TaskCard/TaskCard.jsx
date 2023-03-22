@@ -1,10 +1,9 @@
 import "./TaskCard.css"
 import { Modal } from "react-bootstrap";
-import { Check2, Check2All, ThreeDotsVertical, XCircle} from "react-bootstrap-icons";
+import { Check2, Check2All, ThreeDotsVertical} from "react-bootstrap-icons";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import useFetch from "../../hooks/useFetch";
 import { useState } from "react";
 import useAxios from "../../hooks/useAxios"
 
@@ -55,11 +54,11 @@ const TaskCard = (props) => {
             <Row>
                 <Col><p className="task-description">{props.task.description}</p></Col>
                 <Col>
-                    {props.task.status == 'backlog' &&
+                    {props.task.status === 'backlog' &&
 
                         <Check2 size={20} className="task-check" onClick={()=>updateStatus('doing', props.task.id)}/> 
                     }
-                    {props.task.status == 'doing' &&
+                    {props.task.status === 'doing' &&
                         <Check2All size={20} onClick={()=>updateStatus('done', props.task.id)} className="task-check"/> 
                     }
                 </Col>
@@ -71,7 +70,7 @@ const TaskCard = (props) => {
                 <Modal.Title>{props.task.name}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <form className="task-form">
+                <form className="task-form">                    
                     <input className="task-input"
                     type='text'
                     name='name'
@@ -83,6 +82,13 @@ const TaskCard = (props) => {
                     rows='4'
                     cols='30'
                     onChange={handleInputChange}/>
+                    <select name="status" value={taskForm.status} onChange={handleInputChange}>
+                        <option value="backlog">Backlog</option>
+                        <option value="doing">Doing</option>
+                        <option value="done">Done</option>
+
+                        
+                    </select>
                 </form>
             </Modal.Body>
             <Modal.Footer>

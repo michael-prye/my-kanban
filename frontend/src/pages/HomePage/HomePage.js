@@ -1,6 +1,5 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import useFetch from "../../hooks/useFetch";
 import "./HomePage.css"
 import ReactDatePicker from "react-datepicker";
 import GetDate from "../../utils/GetDate";
@@ -13,10 +12,10 @@ import useAxios from "../../hooks/useAxios";
 const HomePage = () => {
 
   let date = GetDate();
-  //const [tasks, getTasks] = useFetch('http://127.0.0.1:8000/api/task/','GET',null)
+
   const [tasks, getTasks] = useAxios('http://127.0.0.1:8000/api/task/','GET',null)
-  
   const [updateOldTaskData, updateOldTask] = useAxios('http://127.0.0.1:8000/api/task/date','GET',null)
+
   const [startDate, setStartDate] = useState(new Date())
   const [filterDate, setFilterDate] = useState(date)
 
@@ -56,7 +55,7 @@ const HomePage = () => {
         <div className="backlog">
           <h6>Backlog</h6>
           <div className="task-list">
-            {tasks.filter(task => task.status == 'backlog').map(backlogTask =>(
+            {tasks.filter(task => task.status === 'backlog').map(backlogTask =>(
             <TaskCard  task={backlogTask} getTasks={getTasks} date={filterDate} key={backlogTask.id}/>
             ))}
           </div>
@@ -64,7 +63,7 @@ const HomePage = () => {
       < div className="doing">
         <h6>Doing</h6>
         <div className="task-list">
-        {tasks.filter(task => task.status == 'doing').map(doingTask =>(
+        {tasks.filter(task => task.status === 'doing').map(doingTask =>(
         < TaskCard task={doingTask} getTasks={getTasks} date={filterDate} key={doingTask.id}/>
         ))}
         </div>
@@ -72,8 +71,8 @@ const HomePage = () => {
         <div className="done">
           <h6>Done</h6>
           <div className="task-list">
-          {tasks.filter(task => task.status == 'done').map(doneTask =>(
-          <TaskCard task={doneTask} key={doneTask.id}/>
+          {tasks.filter(task => task.status === 'done').map(doneTask =>(
+          <TaskCard task={doneTask} getTasks={getTasks} date={filterDate} key={doneTask.id}/>
           ))}
           </div>
         </div>
