@@ -86,8 +86,6 @@ const TaskCard = (props) => {
                         <option value="backlog">Backlog</option>
                         <option value="doing">Doing</option>
                         <option value="done">Done</option>
-
-                        
                     </select>
                 </form>
             </Modal.Body>
