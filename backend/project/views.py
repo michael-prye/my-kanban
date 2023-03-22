@@ -10,6 +10,12 @@ from .serializers import ProjectSerializer
 @permission_classes([AllowAny])
 def project_list(request):
     if request.method == 'GET':
-        projects = Project.objects.all()
-        serializer = ProjectSerializer(projects, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        project_id = request.query_params.get('id')
+        if project_id:
+            project = Project.objects.filter(pk=project_id)
+            serializer = ProjectSerializer(project, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            projects = Project.objects.all()
+            serializer = ProjectSerializer(projects, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
