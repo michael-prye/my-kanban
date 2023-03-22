@@ -49,16 +49,13 @@ const TaskCard = (props) => {
                     {props.task.status == 'doing' &&
                         <Check2All size={20} onClick={()=>updateStatus('done', props.task.id)} className="task-check"/> 
                     }
-                    {props.task.status == 'done' &&
-                        <XCircle className="done-circle" size={20}/>
-                    }
                 </Col>
                 <Col><ThreeDotsVertical onClick={()=>showTaskModal(true)}/></Col>
             </Row>
         </Container>
         <Modal show={taskModal} onHide={()=>showTaskModal(false)} centered={true}>
             <Modal.Header closeButton>
-                <Modal.Title>Task</Modal.Title>
+                <Modal.Title>{props.task.name}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <form className="task-form">
@@ -76,7 +73,7 @@ const TaskCard = (props) => {
                 </form>
             </Modal.Body>
             <Modal.Footer>
-                <button onClick={()=>showTaskModal(false)}>Exit</button>
+                <button >Delete</button>
                 <button onClick={()=>updateTask(props.task.id)}>Update</button>
             </Modal.Footer>
             
