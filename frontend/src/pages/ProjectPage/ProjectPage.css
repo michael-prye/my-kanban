@@ -2,3 +2,10 @@
     padding-left: 160px;
     padding-top: 60px;
 }
+.project-form{
+    display: flex;
+    flex-direction: column;
+}
+.project-input{
+    margin: 5px;
+}
