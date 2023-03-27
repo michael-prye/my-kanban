@@ -30,7 +30,7 @@ const TaskCard = (props) => {
     }
     const updateTask = async(id)=>{
         await putTask(id,null,null);
-        await props.getTasks(null, null,props.date);
+        await props.getTasks(null,props.date);
         showTaskModal(false)
     }
     const handleDeleteModal =()=>{

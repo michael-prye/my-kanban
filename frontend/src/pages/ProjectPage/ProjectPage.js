@@ -84,6 +84,7 @@ const ProjectPage = () => {
                 className="project-input"
                 placeholder="description"
                 name="description"
+                maxLength="255"
                 value={projectForm.description}
                 onChange={handleInputChange}
                 rows="4"
