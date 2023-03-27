@@ -28,9 +28,10 @@ def project_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     if request.method == "PUT":
         project_id = request.query_params.get('id')
-        queryset = Project.objects.filter(pk=project_id)
+        queryset = Project.objects.get(pk=project_id)
         serializer = ProjectSerializer(queryset, data=request.data, partial=True)
         if serializer.is_valid():
+            serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.error_messages, status=status.HTTP_400_BAD_REQUEST)
     if request.method == "DELETE":
