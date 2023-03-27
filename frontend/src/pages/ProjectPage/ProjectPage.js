@@ -8,12 +8,20 @@ const ProjectPage = () => {
 
     const defaultProjectForm = {name:'', description:''}
     const [projectForm, setProjectForm] = useState(defaultProjectForm)
+    const [projectSelect, setProjectSelect] = useState('DEFAULT')
+
+
     const [projectModal, showProjectModal] = useState(false)
+    const [editProjectModal, showEditModal] = useState(false)
+    const [deleteModal, showDeleteModal] = useState(false)
 
     const [projectList, getProjectsList] = useAxios('http://127.0.0.1:8000/api/project/','GET', null)
-    const [project, getProjects] = useAxios('http://127.0.0.1:8000/api/project/','GET', null)
+    const [project, getProject] = useAxios('http://127.0.0.1:8000/api/project/','GET', null)
     const [postProjectData, postProject] = useAxios('http://127.0.0.1:8000/api/project/','POST', projectForm)
-    const [projectSelect, setProjectSelect] = useState('DEFAULT')
+    const [deleteProjectData, deleteProject] = useAxios('http://127.0.0.1:8000/api/project/','DELETE', projectForm)
+
+
+  
     
 
     useEffect(()=>{
@@ -25,6 +33,15 @@ const ProjectPage = () => {
         setProjectForm({...projectForm, [e.target.name]: e.target.value})
     }
 
+    const handleEditModal=()=>{
+      setProjectForm(project[0])
+      showEditModal(true)
+    }
+    const handleDeleteModal=()=>{
+      showDeleteModal(true)
+      showEditModal(false)
+    }
+
     const handleProjectSelect = async(e)=>{
         e.persist();
         if(e.target.value === 'new'){
@@ -32,7 +49,7 @@ const ProjectPage = () => {
         }
         else{
             setProjectSelect(e.target.value)
-            await getProjects(e.target.value,null,null)
+            await getProject(e.target.value,null,null)
         }
     }
 
@@ -58,12 +75,12 @@ const ProjectPage = () => {
               <option value={proj.id}>{proj.name}</option>
             ))}
           </select>
-          {project[0] &&
-
-            <ProjectMain project={project[0]}/>
-          }
+          {project[0] && (
+            <ProjectMain project={project[0]} editModal={handleEditModal} />
+          )}
         </div>
         <Modal
+          className="new-project"
           show={projectModal}
           onHide={() => showProjectModal(false)}
           centered={true}
@@ -97,6 +114,54 @@ const ProjectPage = () => {
             <button onClick={handleProjectPost}>Save</button>
           </Modal.Footer>
         </Modal>
+        <Modal
+          className="edit-Project"
+          show={editProjectModal}
+          onHide={() => showEditModal(false)}
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Project</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+          <form className="project-form">
+              <input
+                className="project-input"
+                placeholder="name"
+                name="name"
+                value={projectForm.name}
+                onChange={handleInputChange}
+              />
+              <textarea
+                className="project-input"
+                placeholder="description"
+                name="description"
+                maxLength="255"
+                value={projectForm.description}
+                onChange={handleInputChange}
+                rows="4"
+                cols="30"
+              />
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <button onClick={handleDeleteModal}>Delete</button>
+            <button>Update</button>
+          </Modal.Footer>
+        </Modal>
+        <Modal
+          className="delete-modal"
+          show={deleteModal}
+          onHide={()=> showDeleteModal(false)}
+          centered>
+            <Modal.Header closeButton>
+              <Modal.Title>Do you want to delete project?</Modal.Title>
+            </Modal.Header>
+            <Modal.Footer>
+              <button>Yes</button>
+              <button>No</button>
+            </Modal.Footer>
+          </Modal>
       </div>
     );
 }
